@@ -1,0 +1,24 @@
+{
+  "name": "@berhalak/js",
+  "version": "0.0.2",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "deploy": "tsc && npm publish --access public",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/berhalak/js.git"
+  },
+  "author": "berhalak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/berhalak/js/issues"
+  },
+  "homepage": "https://github.com/berhalak/js#readme",
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  }
+}
