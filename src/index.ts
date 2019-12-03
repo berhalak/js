@@ -33,6 +33,12 @@ declare global {
         last(): T | undefined;
         firstValid(): T;
         group<U>(predicate: (value: T) => U): Group<U, T>[];
+
+        take(count: number): Array<T>;
+        skip(count: number): Array<T>;
+        chunk(size: number): Array<Array<T>>;
+        until(predicate: (value: T) => boolean): Array<T>;
+        after(predicate: (value: T) => boolean): Array<T>;
     }
 
     interface String {
@@ -223,5 +229,64 @@ if (!Array.prototype.distinct) {
             }
         });
         return res;
+    }
+}
+
+if (!Array.prototype.after) {
+    Array.prototype.after = function (this: Array<any>, selector: (value: any, index?: number) => boolean) {
+        let result = [];
+        let can = false;
+        for (let i = 0; i < this.length; i++) {
+            if (selector(this[i], i)) {
+                can = true;
+                continue;
+            }
+            if (can) {
+                result.push(this[i]);
+            }
+
+        }
+        return result;
+    }
+}
+
+if (!Array.prototype.until) {
+    Array.prototype.until = function (this: Array<any>, selector: (value: any, index?: number) => boolean) {
+        let result = [];
+        for (let i = 0; i < this.length; i++) {
+            if (selector(this[i], i)) {
+                break;
+            }
+            result.push(this[i]);
+
+        }
+        return result;
+    }
+}
+
+
+if (!Array.prototype.take) {
+    Array.prototype.take = function (count: number) {
+        if (count >= 0) {
+            return this.slice(0, count);
+        } else {
+            return this.slice(0, this.length + count);
+        }
+    }
+}
+
+if (!Array.prototype.skip) {
+    Array.prototype.skip = function (count: number) {
+        return this.slice(count);
+    }
+}
+
+if (!Array.prototype.chunk) {
+    Array.prototype.chunk = function (this: Array<any>, chunkSize: number) {
+        let result = [];
+        let arr = this;
+        for (var i = 0, len = arr.length; i < len; i += chunkSize)
+            result.push(arr.slice(i, i + chunkSize));
+        return result;
     }
 }
