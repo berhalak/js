@@ -1,3 +1,5 @@
+import "array-flat-polyfill"
+
 export function UUID() { // Public Domain/MIT
     var d = new Date().getTime();
     if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
@@ -39,6 +41,10 @@ declare global {
         chunk(size: number): Array<Array<T>>;
         until(predicate: (value: T) => boolean): Array<T>;
         after(predicate: (value: T) => boolean): Array<T>;
+
+        // polified by external lib
+        flat(): Array<T>;
+        flatMap(func: (x: T) => T): Array<T>;
     }
 
     interface String {

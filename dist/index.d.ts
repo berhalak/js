@@ -1,3 +1,4 @@
+import "array-flat-polyfill";
 export declare function UUID(): string;
 declare global {
     type Dictionary<T> = {
@@ -23,6 +24,13 @@ declare global {
         last(): T | undefined;
         firstValid(): T;
         group<U>(predicate: (value: T) => U): Group<U, T>[];
+        take(count: number): Array<T>;
+        skip(count: number): Array<T>;
+        chunk(size: number): Array<Array<T>>;
+        until(predicate: (value: T) => boolean): Array<T>;
+        after(predicate: (value: T) => boolean): Array<T>;
+        flat(): Array<T>;
+        flatMap(func: (x: T) => T): Array<T>;
     }
     interface String {
         toNumber(): number;

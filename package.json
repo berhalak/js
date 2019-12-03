@@ -1,6 +1,6 @@
 {
   "name": "@berhalak/js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,5 +20,8 @@
   "homepage": "https://github.com/berhalak/js#readme",
   "devDependencies": {
     "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "array-flat-polyfill": "^1.0.1"
   }
 }

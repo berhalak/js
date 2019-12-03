@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+require("array-flat-polyfill");
 function UUID() {
     var d = new Date().getTime();
     if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
@@ -176,6 +177,58 @@ if (!Array.prototype.distinct) {
             }
         });
         return res;
+    };
+}
+if (!Array.prototype.after) {
+    Array.prototype.after = function (selector) {
+        let result = [];
+        let can = false;
+        for (let i = 0; i < this.length; i++) {
+            if (selector(this[i], i)) {
+                can = true;
+                continue;
+            }
+            if (can) {
+                result.push(this[i]);
+            }
+        }
+        return result;
+    };
+}
+if (!Array.prototype.until) {
+    Array.prototype.until = function (selector) {
+        let result = [];
+        for (let i = 0; i < this.length; i++) {
+            if (selector(this[i], i)) {
+                break;
+            }
+            result.push(this[i]);
+        }
+        return result;
+    };
+}
+if (!Array.prototype.take) {
+    Array.prototype.take = function (count) {
+        if (count >= 0) {
+            return this.slice(0, count);
+        }
+        else {
+            return this.slice(0, this.length + count);
+        }
+    };
+}
+if (!Array.prototype.skip) {
+    Array.prototype.skip = function (count) {
+        return this.slice(count);
+    };
+}
+if (!Array.prototype.chunk) {
+    Array.prototype.chunk = function (chunkSize) {
+        let result = [];
+        let arr = this;
+        for (var i = 0, len = arr.length; i < len; i += chunkSize)
+            result.push(arr.slice(i, i + chunkSize));
+        return result;
     };
 }
 //# sourceMappingURL=index.js.map
