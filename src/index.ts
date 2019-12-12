@@ -57,8 +57,9 @@ if (!Array.prototype.equals) {
 		return this.every((v, i) => {
 			let a = v;
 			let b = other[i];
-			if (a == null && b == null) return true;
-			if (a !== null || b !== null) return false;
+
+			if (a === null && b === null) return true;
+			if (a === null || b === null) return false;
 
 			if (typeof a == 'object') {
 				if (a.equals) {
