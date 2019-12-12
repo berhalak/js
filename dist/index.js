@@ -13,6 +13,26 @@ function UUID() {
     });
 }
 exports.UUID = UUID;
+if (!Array.prototype.combination) {
+    Array.prototype.combination = function (predicate) {
+        for (let x = 0; x < this.length - 1; x++) {
+            for (let y = x + 1; y < this.length; y++) {
+                predicate(x, y);
+            }
+        }
+    };
+}
+if (!Array.prototype.permutation) {
+    Array.prototype.permutation = function (predicate) {
+        for (let x = 0; x < this.length; x++) {
+            for (let y = 0; y < this.length; y++) {
+                if (x == y)
+                    continue;
+                predicate(x, y);
+            }
+        }
+    };
+}
 if (!Array.prototype.equals) {
     Array.prototype.equals = function (other) {
         if (!other)

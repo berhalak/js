@@ -30,6 +30,8 @@ declare global {
          * @param other other Array
          */
         equals(other: Array<T>): boolean;
+        permutation(predicate: (a: T, b: T) => void): void;
+        combination(predicate: (a: T, b: T) => void): void;
     }
 }
 declare global {

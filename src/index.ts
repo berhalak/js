@@ -45,9 +45,31 @@ declare global {
 		 * @param other other Array
 		 */
 		equals(other: Array<T>): boolean;
+		permutation(predicate: (a: T, b: T) => void): void;
+		combination(predicate: (a: T, b: T) => void): void;
 	}
 }
 
+if (!Array.prototype.combination) {
+	Array.prototype.combination = function (this: Array<any>, predicate: (a: any, b: any) => void): void {
+		for (let x = 0; x < this.length - 1; x++) {
+			for (let y = x + 1; y < this.length; y++) {
+				predicate(x, y);
+			}
+		}
+	}
+}
+
+if (!Array.prototype.permutation) {
+	Array.prototype.permutation = function (this: Array<any>, predicate: (a: any, b: any) => void): void {
+		for (let x = 0; x < this.length; x++) {
+			for (let y = 0; y < this.length; y++) {
+				if (x == y) continue;
+				predicate(x, y);
+			}
+		}
+	}
+}
 
 
 if (!Array.prototype.equals) {
