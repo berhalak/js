@@ -13,6 +13,69 @@ function UUID() {
     });
 }
 exports.UUID = UUID;
+if (!Array.prototype.equals) {
+    Array.prototype.equals = function (other) {
+        if (!other)
+            return false;
+        if (other.length == 0 && this.length == 0)
+            return true;
+        return this.every((v, i) => {
+            let a = v;
+            let b = other[i];
+            if (a == null && b == null)
+                return true;
+            if (a !== null || b !== null)
+                return false;
+            if (typeof a == 'object') {
+                if (a.equals) {
+                    return a.equals(b);
+                }
+                return a.valueOf() == b.valueOf();
+            }
+            else {
+                return a == b;
+            }
+        });
+    };
+}
+function gcd(a, b) {
+    return a ? gcd(b % a, a) : b;
+}
+function lcm(a, b) {
+    return a * b / gcd(a, b);
+}
+if (!Math.lcm) {
+    Math.lcm = function (...a) {
+        return a.reduce(lcm);
+    };
+}
+if (!Math.gcd) {
+    Math.gcd = function (...a) {
+        return a.reduce(gcd);
+    };
+}
+if (!Math.gcd) {
+    Math.angle = function (y, x) {
+        return Math.atan2(y, x) * 180 / Math.PI;
+    };
+}
+if (!Math.gcd) {
+    Math.clock = function (angle) {
+        if (angle == 90) {
+            angle = 0;
+        }
+        else if (angle > 90) {
+            angle = 360 - (angle - 90);
+        }
+        else {
+            angle = -(angle - 90);
+        }
+        if (Math.abs(angle) == 0) {
+            angle = 0;
+        }
+        return angle;
+    };
+}
 if (!String.prototype.replaceAll) {
     String.prototype.replaceAll = function (search, replacer) {
         var target = this;

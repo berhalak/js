@@ -1,27 +1,27 @@
 {
-  "name": "@berhalak/js",
-  "version": "0.0.4",
-  "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "deploy": "tsc && npm publish --access public",
-    "build": "tsc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/berhalak/js.git"
-  },
-  "author": "berhalak",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/berhalak/js/issues"
-  },
-  "homepage": "https://github.com/berhalak/js#readme",
-  "devDependencies": {
-    "typescript": "^3.7.2"
-  },
-  "dependencies": {
-    "array-flat-polyfill": "^1.0.1"
-  }
+	"name": "@berhalak/js",
+	"version": "0.0.5",
+	"description": "",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"deploy": "tsc && npm publish --access public",
+		"build": "tsc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/berhalak/js.git"
+	},
+	"author": "berhalak",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/berhalak/js/issues"
+	},
+	"homepage": "https://github.com/berhalak/js#readme",
+	"devDependencies": {
+		"typescript": "^3.7.2"
+	},
+	"dependencies": {
+		"array-flat-polyfill": "^1.0.1"
+	}
 }
