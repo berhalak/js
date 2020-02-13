@@ -314,4 +314,24 @@ if (!Array.prototype.chunk) {
         return result;
     };
 }
+class Deferred {
+    constructor() {
+        this._promise = new Promise((ok, fail) => {
+            this._ok = ok;
+            this._fail = fail;
+        });
+    }
+    then(onfulfilled, onrejected) {
+        return this._promise.then(onfulfilled, onrejected);
+    }
+    resolve(value) {
+        if (this._ok)
+            this._ok(value);
+    }
+    reject(reason) {
+        if (this._fail)
+            this._fail(reason);
+    }
+}
+exports.Deferred = Deferred;
 //# sourceMappingURL=index.js.map
