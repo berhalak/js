@@ -296,3 +296,29 @@ if (!Array.prototype.chunk) {
         return result;
     }
 }
+
+export class Deferred<T> implements PromiseLike<T> {
+
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): PromiseLike<TResult1 | TResult2> {
+        return this._promise.then(onfulfilled, onrejected);
+    }
+
+    private _promise: Promise<T>;
+    private _ok?: (value?: T | PromiseLike<T> | undefined) => void;
+    private _fail?: (reason?: any) => void;
+
+    constructor() {
+        this._promise = new Promise<T>((ok, fail) => {
+            this._ok = ok;
+            this._fail = fail;
+        })
+    }
+
+    resolve(value: T) {
+        if (this._ok) this._ok(value);
+    }
+
+    reject(reason: any) {
+        if (this._fail) this._fail(reason);
+    }
+}

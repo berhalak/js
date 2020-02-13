@@ -37,4 +37,13 @@ declare global {
         replaceAll(search: string, replacer?: string): string;
     }
 }
+export declare class Deferred<T> implements PromiseLike<T> {
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | null | undefined, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined): PromiseLike<TResult1 | TResult2>;
+    private _promise;
+    private _ok?;
+    private _fail?;
+    constructor();
+    resolve(value: T): void;
+    reject(reason: any): void;
+}
 //# sourceMappingURL=index.d.ts.map
