@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 require("array-flat-polyfill");
+const md5_1 = __importDefault(require("md5"));
 function UUID() {
     var d = new Date().getTime();
     if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
@@ -94,6 +98,18 @@ if (!Math.gcd) {
             angle = 0;
         }
         return angle;
+    };
+}
+if (!String.hash) {
+    String.hash = function (text) {
+        if (!text)
+            return text;
+        return md5_1.default(text);
+    };
+}
+if (!String.prototype.hash) {
+    String.prototype.hash = function () {
+        return this == '' ? '' : md5_1.default(this);
     };
 }
 if (!String.prototype.replaceAll) {

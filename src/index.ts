@@ -1,4 +1,5 @@
 import "array-flat-polyfill"
+import md5 from "md5"
 
 export function UUID() { // Public Domain/MIT
     var d = new Date().getTime();
@@ -177,6 +178,24 @@ declare global {
     interface String {
         toNumber(): number;
         replaceAll(search: string, replacer?: string): string;
+        hash(): string;
+    }
+
+    interface StringConstructor {
+        hash(text: string): string;
+    }
+}
+
+if (!String.hash) {
+    String.hash = function (text: string): string {
+        if (!text) return text;
+        return md5(text);
+    }
+}
+
+if (!String.prototype.hash) {
+    String.prototype.hash = function (this: string): string {
+        return this == '' ? '' : md5(this);
     }
 }
 

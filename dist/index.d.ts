@@ -71,6 +71,10 @@ declare global {
     interface String {
         toNumber(): number;
         replaceAll(search: string, replacer?: string): string;
+        hash(): string;
+    }
+    interface StringConstructor {
+        hash(text: string): string;
     }
 }
 export declare class Deferred<T> implements PromiseLike<T> {
