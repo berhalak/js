@@ -1,7 +1,7 @@
 import "array-flat-polyfill"
 import md5 from "md5"
 
-export function UUID() { // Public Domain/MIT
+export function uid() { // Public Domain/MIT
     var d = new Date().getTime();
     if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
         d += performance.now(); //use high-precision timer if available
@@ -12,8 +12,6 @@ export function UUID() { // Public Domain/MIT
         return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
 }
-
-
 
 declare global {
     interface Math {
@@ -116,13 +114,13 @@ if (!Math.gcd) {
     }
 }
 
-if (!Math.gcd) {
+if (!Math.angle) {
     Math.angle = function (y: number, x: number) {
         return Math.atan2(y, x) * 180 / Math.PI;
     }
 }
 
-if (!Math.gcd) {
+if (!Math.clock) {
     Math.clock = function (angle: number) {
         if (angle == 90) {
             angle = 0;
@@ -183,6 +181,7 @@ declare global {
 
     interface StringConstructor {
         hash(text: string): string;
+        uid(): string;
     }
 }
 
@@ -190,6 +189,12 @@ if (!String.hash) {
     String.hash = function (text: string): string {
         if (!text) return text;
         return md5(text);
+    }
+}
+
+if (!String.uid) {
+    String.uid = function (): string {
+        return uid();
     }
 }
 

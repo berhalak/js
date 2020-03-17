@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("array-flat-polyfill");
 const md5_1 = __importDefault(require("md5"));
-function UUID() {
+function uid() {
     var d = new Date().getTime();
     if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
         d += performance.now(); //use high-precision timer if available
@@ -16,7 +16,7 @@ function UUID() {
         return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
     });
 }
-exports.UUID = UUID;
+exports.uid = uid;
 if (!Array.prototype.combination) {
     Array.prototype.combination = function (predicate) {
         for (let x = 0; x < this.length - 1; x++) {
@@ -78,12 +78,12 @@ if (!Math.gcd) {
         return a.reduce(gcd);
     };
 }
-if (!Math.gcd) {
+if (!Math.angle) {
     Math.angle = function (y, x) {
         return Math.atan2(y, x) * 180 / Math.PI;
     };
 }
-if (!Math.gcd) {
+if (!Math.clock) {
     Math.clock = function (angle) {
         if (angle == 90) {
             angle = 0;
@@ -105,6 +105,11 @@ if (!String.hash) {
         if (!text)
             return text;
         return md5_1.default(text);
+    };
+}
+if (!String.uid) {
+    String.uid = function () {
+        return uid();
     };
 }
 if (!String.prototype.hash) {

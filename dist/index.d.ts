@@ -1,5 +1,5 @@
 import "array-flat-polyfill";
-export declare function UUID(): string;
+export declare function uid(): string;
 declare global {
     interface Math {
         /**
@@ -75,6 +75,7 @@ declare global {
     }
     interface StringConstructor {
         hash(text: string): string;
+        uid(): string;
     }
 }
 export declare class Deferred<T> implements PromiseLike<T> {
