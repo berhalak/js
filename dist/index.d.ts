@@ -43,6 +43,9 @@ declare global {
         key: U;
         list: T[];
     };
+    type Fun<T> = () => T;
+    type Action<T> = (arg: T) => void;
+    type Mapped<F, T> = (arg: F) => T;
     interface Array<T> {
         distinct(predicate?: (value: T) => any): Array<T>;
         remove(element: any): void;
