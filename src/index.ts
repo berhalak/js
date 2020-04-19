@@ -165,7 +165,7 @@ declare global {
         last(): T | undefined;
         firstValid(): T;
         group<U>(predicate: (value: T) => U): Group<U, T>[];
-
+        interleave<V>(value: V | (() => V)): Array<V | T>;
         take(count: number): Array<T>;
         skip(count: number): Array<T>;
         chunk(size: number): Array<Array<T>>;
@@ -224,6 +224,25 @@ if (!String.prototype.toNumber) {
 if (!Array.prototype.invert) {
     Array.prototype.invert = function (this: Array<any>) {
         return [...this].reverse();
+    }
+}
+
+if (!Array.prototype.interleave) {
+    Array.prototype.interleave = function (this: Array<any>, value: any) {
+
+        if (this.length <= 1) return this;
+
+        const result = [];
+        for (let i = 0; i < this.length; i++) {
+            result.push(this[i]);
+            if (i + 1 == this.length) break;
+            if (typeof value == 'function') {
+                result.push(value())
+            } else {
+                result.push(value);
+            }
+        }
+        return result;
     }
 }
 

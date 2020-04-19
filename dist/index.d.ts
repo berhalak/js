@@ -63,6 +63,7 @@ declare global {
         last(): T | undefined;
         firstValid(): T;
         group<U>(predicate: (value: T) => U): Group<U, T>[];
+        interleave<V>(value: V | (() => V)): Array<V | T>;
         take(count: number): Array<T>;
         skip(count: number): Array<T>;
         chunk(size: number): Array<Array<T>>;

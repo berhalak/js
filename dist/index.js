@@ -133,6 +133,25 @@ if (!Array.prototype.invert) {
         return [...this].reverse();
     };
 }
+if (!Array.prototype.interleave) {
+    Array.prototype.interleave = function (value) {
+        if (this.length <= 1)
+            return this;
+        const result = [];
+        for (let i = 0; i < this.length; i++) {
+            result.push(this[i]);
+            if (i + 1 == this.length)
+                break;
+            if (typeof value == 'function') {
+                result.push(value());
+            }
+            else {
+                result.push(value);
+            }
+        }
+        return result;
+    };
+}
 if (!Array.prototype.first) {
     Array.prototype.first = function () {
         return this.length ? this[0] : null;
