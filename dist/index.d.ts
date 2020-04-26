@@ -69,8 +69,8 @@ declare global {
         chunk(size: number): Array<Array<T>>;
         until(predicate: (value: T) => boolean): Array<T>;
         after(predicate: (value: T) => boolean): Array<T>;
-        flat(): Array<T>;
-        flatMap(func: (x: T) => T): Array<T>;
+        flat(): Array<T extends Array<infer P> ? P : any>;
+        flatMap<V>(func: (x: T) => Array<V>): Array<V>;
     }
     interface String {
         toNumber(): number;

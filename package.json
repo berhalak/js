@@ -1,6 +1,6 @@
 {
   "name": "@berhalak/js",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/berhalak/js#readme",
   "devDependencies": {
-    "@types/md5": "^2.1.33",
+    "@types/md5": "^2.2.0",
     "typescript": "^3.8.3"
   },
   "dependencies": {
