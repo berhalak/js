@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Deferred = exports.uid = void 0;
 require("array-flat-polyfill");
 const md5_1 = __importDefault(require("md5"));
 function uid() {

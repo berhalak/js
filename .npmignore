@@ -1,0 +1,15 @@
+test/
+temp/
+**/.out/
+box.scss
+src/
+dist/demo.html
+dist/vue-layout.common.js
+dist/vue-layout.common.js*
+dist/vue-layout.umd.js*
+
+tsconfig.json
+vue.config.js
+**/*.tgz
+.github/
+.gitpod*
